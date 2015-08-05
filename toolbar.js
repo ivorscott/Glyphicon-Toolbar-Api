@@ -20,27 +20,7 @@ var api = (function (api) {
 		bind(buttons);
 
 		function model (action) {
-
-			var xmlhttp = new XMLHttpRequest();
-			var url = "http://ux.ivorscott.com/prototype/data.json";
-
-			xmlhttp.onreadystatechange = function() {
-			    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-			        var myArr = JSON.parse(xmlhttp.responseText);
-			        format(myArr);
-			    }
-			}
-			xmlhttp.open("GET", url, true);
-			xmlhttp.send();
-
-			function format(arr) {
-			    var out = "";
-			    for(var i = 0; i < arr.length; i++) {
-			        out += '<a href="' + arr[i].url + '">' + 
-			        arr[i].display + '</a><br>';
-			    }
-			    document.body.appendChild().innerHTML = out;
-			}
+			return Math.floor(Math.random(action) * 11);
 		}
 
 		function controller (action) {
