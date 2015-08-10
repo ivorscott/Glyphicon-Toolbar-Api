@@ -109,37 +109,37 @@ var api = (function (api) {
 
 	}; // createMenuItems
 
-	api.menu = function (menuId, buttonNames) {
+	api.menu = function (menuId, buttonImages) {
 
-		var menu, menuId, buttonNames, buttons = [], wrapper;
+		var menu, menuId, buttonImages, buttons = [], wrapper;
 
 		// Error Handling 
 
 		if (!tools.safeName(menuId)) {
-			api.log("\ndef  [2 params]: [ string menuId ], [ array buttonNames ]","notice");
+			api.log("\ndef  [2 params]: [ string menuId ], [ array buttonImages ]","notice");
 			api.log("error:  valid 'menuId' name required.","error");
 			return false;
 		}
 
-		if (Array.isArray(buttonNames)){
+		if (Array.isArray(buttonImages)){
 
-			if(buttonNames.length == 0) {
-					api.log("\ndef  [2 params]: [ string menuId ], [ array buttonNames ]","notice");
-					api.log("error: empty array, pass list of string names.","error");
+			if(buttonImages.length == 0) {
+					api.log("\ndef  [2 params]: [ string menuId ], [ array buttonImages ]","notice");
+					api.log("error: empty array, pass list of Bootstrap string names.","error");
 					return false;
 			}
 
-			for (var i = 0; i < buttonNames.length; i++) {
-				if (!buttonNames[i]) {
-					api.log("\ndef  [2 params]: [ string menuId ], [ array buttonNames ]","notice");
-					api.log("error: int value only set size of array, pass list of string names.","error");
+			for (var i = 0; i < buttonImages.length; i++) {
+				if (!buttonImages[i]) {
+					api.log("\ndef  [2 params]: [ string menuId ], [ array buttonImages ]","notice");
+					api.log("error: int value only set size of array, pass list of Bootstrap string names.","error");
 					return false;
 				}
 			}
 
 		} else {
-			api.log("\ndef  [2 params]: [ string menuId ], [ array  buttonNames ]","notice");
-			api.log("error:  'buttonNames' param must be an array.","error");
+			api.log("\ndef  [2 params]: [ string menuId ], [ array  buttonImages ]","notice");
+			api.log("error:  'buttonImages' param must be an array.","error");
 			return false;
 		}
 
@@ -157,11 +157,10 @@ var api = (function (api) {
 
 			api.log("menu created.","success");
 
-			for (var i = 0; i < buttonNames.length; i++) {
+			for (var i = 0; i < buttonImages.length; i++) {
 
 				buttons[i] = document.createElement("span");
-				buttons[i].className = "button";
-				buttons[i].innerHTML = '' + buttonNames[i]; // force string
+				buttons[i].className = "button glyphicon glyphicon-" + buttonImages[i];
 
 				if (i == 0) {
 					buttons[i].classList.add("active"); // first acive on default
@@ -170,7 +169,7 @@ var api = (function (api) {
 				menu.appendChild(buttons[i]);	
 				document.body.appendChild(menu);
 
-				api.log("\t + new button: " + buttons[i].innerHTML ,"#abe");
+				api.log("\t + new button: " + buttonImages[i] ,"#abe");
 			}
 
 		} else {
@@ -185,7 +184,44 @@ var api = (function (api) {
 		// Return buttons
 
 		return {
-			buttons: createMenuButtons(buttons) 
+			buttons: createMenuButtons(buttons),
+			setAbs: function(position) {
+
+				var className = '';
+				var options = ["fixed-top","fixed-right","fixed-bottom","fixed-left"];
+
+				switch(position) {
+					case  "top": 
+						className = options[0];
+						break;
+					case "right": 
+						className = options[1];
+						break;
+					case "bottom": 
+						className = options[2];
+						break;
+					case "left": 
+						className = options[3];
+						break;
+					default:
+						className = false;
+				}
+				
+				if(!className) {
+					api.log("\ndef  [1 param]: [ string position ]","notice");
+					api.log("error:  valid 'position' name required. accepts (top|right|bottom|left)","error");
+					return false;
+				} else {
+					for(var i = 0; i < options.length;i++) {
+						for(var b = 0; b < menu.classList.length;b++) {
+							if(menu.classList[b] == options[i]) {
+								menu.classList.remove(options[i]);
+							}
+						}
+					}
+					menu.classList.add(className);
+				}
+			} 
 		};
 	}; // menu 
 
