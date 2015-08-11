@@ -1,71 +1,60 @@
-/* Toolbar api */
+/* Toolbar Api 
+ * author: ivorscott
+ * 2015
+ */
 
 var api = (function (api) {
-
 	var tools = {
 		
 		// Return true on success
-
 		safeName : function (name) {
 			var name = name || '';
 			return /^[a-z_-][a-z\d_-]*$/i.test(name);
 		}
 	}; // tools
 
+	function model (action) {
+		return Math.floor(Math.random(action) * 11);
+	}
 
-	var initialize = function(buttons) {
+	function controller (button) {
+		var action = button.innerHTML.toLowerCase();
+		theActiveButton = button.parentElement.querySelectorAll(".active")[0];
 
-		// Connect buttons to mvc
+		// deactivate previous button
+		theActiveButton.classList.remove("active");
 
-		bind(buttons);
+		// activate new button
+		button.classList.add("active");
+		view(action,model(action));
+	}
 
-		function model (action) {
-			return Math.floor(Math.random(action) * 11);
-		}
+	function view (action, model) {
+		var model =  "The Action is: '" + action + "' & the Model is: '" + model + "'";
+		api.log(model,"notice");
+	}
 
-		function controller (action) {
-			view(action,model(action));
-		}
-
-		function view (action, model) {
-			var model =  "The Action is: '" + action + "' & the Model is: '" + model + "'";
-			api.log(model,"notice");
-		}
-
-		function bind (buttons) {
-			[].forEach.call(buttons,function (button,index,array) {
-				button.addEventListener('click', function() {
-					
-					var action = this.innerHTML.toLowerCase();
-					controller(action);
-
-					theActiveButton = this.parentElement.querySelectorAll(".active")[0];
-					// deactivate previous button
-					theActiveButton.classList.remove("active");
-					// activate new button
-					this.classList.add("active");
-				});
-			});
-		}
-	}; // initialize
+	function bind (buttons) {
+		[].forEach.call(buttons,function (button,index,array) {
+			button.addEventListener('click',controller(button));
+		});
+	}
 	
 	var createMenuButtons = function (buttonElements) {
-		
 		var buttons = [];
 
 		// Connect buttons to mvc
-
-		initialize(buttonElements);
+		bind(buttonElements);
 
 		// Build button definition
-		
 		[].forEach.call(buttonElements,function (el,index,array) {
 			var button  = {
 				el : el,
 				css : function (rule,value) {
 					this.el.style[rule] = value;
 				},
-				disable : function () {
+				disable : function () { 
+					this.el.removeEventListener('click',controller);
 					this.el.classList.add("disabled");
 				},
 				enable : function () {
@@ -101,7 +90,6 @@ var api = (function (api) {
 			};
 
 			// Add button objects to array
-
 			buttons.push(button);
 		});
 
@@ -110,19 +98,16 @@ var api = (function (api) {
 	}; // createMenuItems
 
 	api.menu = function (menuId, buttonImages) {
-
 		var menu, menuId, buttonImages, buttons = [], wrapper;
 
 		// Error Handling 
-
 		if (!tools.safeName(menuId)) {
 			api.log("\ndef  [2 params]: [ string menuId ], [ array buttonImages ]","notice");
 			api.log("error:  valid 'menuId' name required.","error");
 			return false;
 		}
 
-		if (Array.isArray(buttonImages)){
-
+		if (Array.isArray(buttonImages)) {
 			if(buttonImages.length == 0) {
 					api.log("\ndef  [2 params]: [ string menuId ], [ array buttonImages ]","notice");
 					api.log("error: empty array, pass list of Bootstrap string names.","error");
@@ -144,13 +129,11 @@ var api = (function (api) {
 		}
 
 		// Get menu, if absent create it
-
 		menu = document.getElementById(menuId);
 
 		if (!menu) {
 
 			// New menu
-
 			menu = document.createElement("div");
 			menu.id = menuId;
 			menu.className = "menu";
@@ -158,12 +141,11 @@ var api = (function (api) {
 			api.log("menu created.","success");
 
 			for (var i = 0; i < buttonImages.length; i++) {
-
 				buttons[i] = document.createElement("span");
 				buttons[i].className = "button glyphicon glyphicon-" + buttonImages[i];
 
 				if (i == 0) {
-					buttons[i].classList.add("active"); // first acive on default
+					buttons[i].classList.add("active"); // first active on default
 				}
 
 				menu.appendChild(buttons[i]);	
@@ -175,7 +157,6 @@ var api = (function (api) {
 		} else {
 
 			// Get buttons from exsiting menu
-
 			buttons = menu.querySelectorAll(".button");
 
 			api.log("toolbar already exists.", "#abe");
@@ -186,7 +167,6 @@ var api = (function (api) {
 		return {
 			buttons: createMenuButtons(buttons),
 			setAbs: function(position) {
-
 				var className = '';
 				var options = ["fixed-top","fixed-right","fixed-bottom","fixed-left"];
 
@@ -212,6 +192,7 @@ var api = (function (api) {
 					api.log("error:  valid 'position' name required. accepts (top|right|bottom|left)","error");
 					return false;
 				} else {
+
 					for(var i = 0; i < options.length;i++) {
 						for(var b = 0; b < menu.classList.length;b++) {
 							if(menu.classList[b] == options[i]) {
@@ -221,7 +202,7 @@ var api = (function (api) {
 					}
 					menu.classList.add(className);
 				}
-			} 
+			}
 		};
 	}; // menu 
 
