@@ -2,6 +2,26 @@
 	padding:0;
 	margin:0;
 }
+body {
+	position: absolute;
+	height: 100%;
+	width:100%;
+	left:0;
+	top:0;
+	right:0;
+	bottom:0;
+	text-align: center;
+}
+select {
+	position: relative;
+	top: 300px;
+	width:80%;
+	margin: 0 auto;
+	padding:10px;
+}
+option {
+	font-size:2.5em;
+}
 .menu {
 	position: absolute;
 	font: 1.2em Helvetica, Arial, san-serif;
@@ -26,6 +46,7 @@
 	bottom:0;
 }
 .fixed-right{
+	top:0;
 	right:0;
 	height:100%;
 	width:42px;
@@ -33,6 +54,7 @@
 }
 .fixed-left {
     width:42px;
+    top:0;
 	left:0;
 	height:100%;
 	padding:0;
