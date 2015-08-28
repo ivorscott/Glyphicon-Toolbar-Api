@@ -1,0 +1,53 @@
+* {
+	padding:0;
+	margin:0;
+}
+.menu {
+	position: absolute;
+	font: 1.2em Helvetica, Arial, san-serif;
+	background: #c6c6c6;
+	padding:2%;
+	width: 100%;
+	text-align: center;
+}
+.button {
+	display: inline-block;
+	text-transform: capitalize;
+	padding: 2%;
+	margin: 2%;
+	font-size: 2em;
+	color:#000;
+	background: #eee; 
+}
+.fixed-top{
+	top:0;
+}
+.fixed-bottom {
+	bottom:0;
+}
+.fixed-right{
+	right:0;
+	height:100%;
+	width:42px;
+	padding:0;
+}
+.fixed-left {
+    width:42px;
+	left:0;
+	height:100%;
+	padding:0;
+}
+.fixed-right .button, .fixed-left .button {
+display:block;
+height: 40px;
+width:40px;
+padding:3px 0;
+margin: 3px 0;
+}
+.active {
+	background: #444;
+	color:#fff;
+}
+.disabled {
+	background: gray;
+}
