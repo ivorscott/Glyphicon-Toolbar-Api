@@ -3,7 +3,7 @@ Side Project toolbar api.
 
 Tested on mobile.
 
-![ScreenShot](https://raw.github.com/ivorscott/collabvat/master/images/toolbar.png)<br /><br />
+![ScreenShot](https://raw.github.com/ivorscott/Glyphicon-Toolbar-Api/master/images/toolbar.png)<br /><br />
 
 ##Usage
 
