@@ -37,7 +37,7 @@ Additional methods
 menu.buttons[0].disable // disables button 
 menu.buttons[0].enable  // enables button 
 menu.buttons[0].isDisabled // returns boolean, true if button is disabled 
-menu.buttons[0].activate  // makes the button appear active by changing background color 
+menu.buttons[0].activate  // button appears active by changing background color 
 menu.buttons[0].deactivate // removes active appearance 
 menu.buttons[0].isActive  // returns boolean, true if button is activated 
 menu.buttons[0].toggleActiveState // switches active state on if off and off if on
