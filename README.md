@@ -1,6 +1,10 @@
 # Glyphicon-Toolbar-Api
 Side Project toolbar api.
 
+Tested on mobile.
+
+![ScreenShot](https://raw.github.com/ivorscott/Glyphicon-Toolbar-Api/master/images/toolbar.png)<br /><br />
+
 ##Usage
 
 Create a new instance of api.menu() and give the toolbar Bootstrap gylphicon names.
@@ -28,6 +32,16 @@ Alter the css of buttons
 menu.buttons[0].css("background","pink");
 ```
 
+Additional methods
+```
+menu.buttons[0].disable // disables button 
+menu.buttons[0].enable  // enables button 
+menu.buttons[0].isDisabled // returns boolean, true if button is disabled 
+menu.buttons[0].activate  // makes the button appear active by changing background color 
+menu.buttons[0].deactivate // removes active appearance 
+menu.buttons[0].isActive  // returns boolean, true if button is activated 
+menu.buttons[0].toggleActiveState // switches active state on if off and off if on
+```
 
 ## Bootstrap Glyphicon names
 
