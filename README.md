@@ -2,6 +2,7 @@
 Side Project toolbar api.
 
 Tested on mobile.
+Demo http://ux.ivorscott.com/toolbar/
 
 ![ScreenShot](https://raw.github.com/ivorscott/Glyphicon-Toolbar-Api/master/images/toolbar.png)<br /><br />
 
