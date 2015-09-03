@@ -8,7 +8,7 @@ Demo http://ux.ivorscott.com/toolbar/
 
 ##Usage
 
-Create a new instance of api.menu() and give the toolbar Bootstrap gylphicon names.
+Create a new instance of api.menu(). Give the toolbar a name (e.g.,"menu") and an array of Bootstrap gylphicon names.
 
 ```
 var menu = api.menu("menu",["envelope","calendar","user"]);
