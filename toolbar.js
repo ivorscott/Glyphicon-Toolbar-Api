@@ -228,7 +228,7 @@ var api = (function (api) {
 	api.log = function(message,type) {
 		switch(type) {
 			case  "notice": 
-				color = "#444";
+				color = "black"; 
 				break;
 			case "success": 
 				color = "green";
