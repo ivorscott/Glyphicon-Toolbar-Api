@@ -15,6 +15,11 @@ var menu = api.menu("menu",["envelope","calendar","user"]);
 
 ```
 
+For testing purposes add the code to the console. This a great place to view errors.
+
+![ScreenShot](https://raw.github.com/ivorscott/Glyphicon-Toolbar-Api/master/images/console.png)<br /><br />
+
+
 Set the position of the toolbar with setAbs(). Expects "top|right|bottom|left".
 
 ```
