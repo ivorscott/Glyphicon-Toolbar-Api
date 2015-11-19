@@ -4,8 +4,6 @@ Side Project toolbar api.
 Tested on mobile.<br/>
 Demo http://ux.ivorscott.com/toolbar/
 
-![ScreenShot](https://raw.github.com/ivorscott/Glyphicon-Toolbar-Api/master/images/toolbar.png)<br /><br />
-
 ##Usage
 
 Create a new instance of api.menu(). Give the toolbar a name (e.g.,"menu") and an array of Bootstrap gylphicon names.
@@ -16,8 +14,6 @@ var menu = api.menu("menu",["envelope","calendar","user"]);
 ```
 
 For testing purposes add the code to the console. This a great place to view errors.
-
-![ScreenShot](https://raw.github.com/ivorscott/Glyphicon-Toolbar-Api/master/images/console.png)<br /><br />
 
 
 Set the position of the toolbar with setAbs(). Expects "top|right|bottom|left".
