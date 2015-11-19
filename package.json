@@ -1,0 +1,21 @@
+{
+  "name": "mm-brand",
+  "version": "0.0.1",
+  "description": "styling packages",
+  "main": "",
+  "dependencies": {
+    "browser-sync": "^2.9.12",
+    "gulp": "^3.9.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://jbellmoremm@bitbucket.org/m38io/mm-brand.git"
+  },
+  "author": "",
+  "license": "None",
+  "homepage": "https://bitbucket.org/m38io/mm-brand#readme"
+}
