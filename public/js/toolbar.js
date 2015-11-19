@@ -1,72 +1,75 @@
 /* Toolbar api */
 
 var api = (function (api) {
-
 	var tools = {
-		
-		// Return true on success
-
-		safeName : function (name) {
+		isNameSafe : function (name) { // Return true on success
 			var name = name || '';
 			return /^[a-z_-][a-z\d_-]*$/i.test(name);
 		}
 	}; // tools
 
-	var initialize = function(buttons) {
-
-		// Connect buttons to mvc
-
+	var attachMVC = function(buttons) {
+		
 		bind(buttons);
 
-		function model (action) {
+		function model (action) { // example data
 			return Math.floor(Math.random(action) * 11);
 		}
 
-		function controller (action) {
+		function controller (action) { 
 			view(action,model(action));
 		}
-
-		function view (action, model) {
+		
+		function view (action, model) { // example view
 			var model =  "The Action is: '" + action + "' & the Model is: '" + model + "'";
 			api.log(model,"notice");
 		}
 
 		function bind (buttons) {
 			[].forEach.call(buttons,function (button,index,array) {
+
+				// on click go through button's class list to determine action
 				button.addEventListener('click', function() {
-					this.classList.forEach(function(element,index, array){
-						if (array[index].toString().match(/glyphicon-[a-z]+/)) {
-							var action = element.split('-');
-							controller(action[1]);
-                                             	}
+
+					// for each class in the classlist find the one that indicates the action
+					this.classList.forEach(function(el, index, classList){
+
+						// if a valid button action exists
+						if (classList[index].toString().match(/glyphicon-[a-z]+/)) {
+
+							// split string at '-'
+							var actionName = el.split('-');
+
+							// pass the controller the 2nd index
+							// which contains the actionName
+
+							controller(actionName[1]);
+						}
 					});
-        				
+
+        			// find the activated button
 					theActiveButton = this.parentElement.querySelectorAll(".active")[0];
-					// deactivate previous button
+
+					// deactivate previous button before activating new button
 					theActiveButton.classList.remove("active");
+					
 					// activate new button
 					this.classList.add("active");
 				});
 			});
 		}
-	}; // initialize
+	}; // attachMVC
 	
-	var createMenuButtons = function (buttonElements) {
-		
+	var createMenuButtons = function (buttonElements) {	
+
 		var buttons = [];
 
-		// Connect buttons to mvc
-
-		initialize(buttonElements);
-
-		// Build button definition
+		attachMVC(buttonElements);
 		
+		// Define buttons
 		[].forEach.call(buttonElements,function (el,index,array) {
 			var button  = {
 				el : el,
-				css : function (rule,value) {
-					this.el.style[rule] = value;
-				},
 				disable : function () {
 					this.el.classList.add("disabled");
 				},
@@ -101,23 +104,21 @@ var api = (function (api) {
 					}
 				}
 			};
-
 			// Add button objects to array
-
 			buttons.push(button);
 		});
 
 		return buttons;
 
-	}; // createMenuItems
+	}; // createMenuButtons
 
 	api.menu = function (menuId, buttonImages) {
 
+		//initialize variables
+		
 		var menu, menuId, buttonImages, buttons = [], wrapper;
 
-		// Error Handling 
-
-		if (!tools.safeName(menuId)) {
+		if (!tools.isNameSafe(menuId)) {
 			api.log("\ndef  [2 params]: [ string menuId ], [ array buttonImages ]","notice");
 			api.log("error:  valid 'menuId' name required.","error");
 			return false;
@@ -134,7 +135,7 @@ var api = (function (api) {
 			for (var i = 0; i < buttonImages.length; i++) {
 				if (!buttonImages[i]) {
 					api.log("\ndef  [2 params]: [ string menuId ], [ array buttonImages ]","notice");
-					api.log("error: int value only set size of array, pass list of Bootstrap string names.","error");
+					api.log("error: int value only set size of array, pass list of Bootstrap Glyphicon string names.","error");
 					return false;
 				}
 			}
