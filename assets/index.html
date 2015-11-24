@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Toolbar</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- Stylesheets -->
+	<link rel="stylesheet" type="text/css" href="css/master.css">
+	<!-- Javascripts -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script type="text/javascript" src="bootstrap-sass/javascripts/bootstrap.min.js"></script>
+	<script src="js/toolbar.js"></script>
+</head>
+<body>
+
+<h1>Bootstrap Theme</h2>
+
+<script>
+	$(document).ready(function(){
+		
+		// Create the menu and set its position
+
+		var menu = api.menu("menu",["envelope","calendar","user"]);
+		menu.setAbs('bottom');
+
+		// Animate the menu
+
+		$('#menu').hide();
+		$('#menu')
+ 		 .css('opacity', 0)
+  		 .slideDown(200)
+  		 .animate(
+    			{ opacity: 1 },
+    			{ queue: false, duration: 'slow' }
+ 		 );			
+	});
+</script>
+</body>
+</html>
