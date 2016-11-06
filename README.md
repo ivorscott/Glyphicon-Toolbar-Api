@@ -1,6 +1,6 @@
 # Glyphicon Toolbar API
 
-![Alt text](/assets/images/example2.png?raw=true "Preview")\
+![Alt text](/assets/images/example2.png?raw=true "Preview")
 
 ##Usage
 
