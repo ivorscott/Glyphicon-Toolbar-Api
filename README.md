@@ -1,5 +1,8 @@
 # Glyphicon Toolbar API
 
+![Alt text](/assets/images/example2.png?raw=true "Preview")
+![Alt text](/assets/images/example3.png?raw=true "Preview")
+
 ##Usage
 
 Create a new instance of `api.menu()`. Give the toolbar a name (e.g.,"menu") and an array of Bootstrap gylphicon names. See possible names below.
@@ -9,6 +12,8 @@ var menu = api.menu("menu",["envelope","calendar","user"]);
 ```
 
 For testing purposes add the code to the console. This a great place to view errors.
+
+![Alt text](/assets/images/example1.png?raw=true "Preview")
 
 Set the position of the toolbar with setAbs(). Expects "top|right|bottom|left".
 
